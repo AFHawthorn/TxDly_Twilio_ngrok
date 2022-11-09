@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 'use strict';
-const { Client, Message } = require('node-osc');
+var osc = require('node-osc');
 
-const client = new Client('127.0.0.1', 3333);
+// const client = new Client('127.0.0.1', 3333);
 
 // const message = new Message('/address');
 // message.append('testing');
@@ -16,9 +16,10 @@ const client = new Client('127.0.0.1', 3333);
 //   }
 //   client.close();
 // });
-
-  oscClient.send('/sms', 'hola');
-  oscClient.close();
+var oscClient = new osc.Client('127.0.0.1', 3333);
+oscClient.send('/sms', 11);
+console.log('sent maybe');
+// oscClient.close();
 
 // or
 // const msg = new Message('/address', 1, 2, 3);

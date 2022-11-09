@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
   res.end(twiml.toString());
   const oscClient = new Client('localhost', 3333);
   oscClient.send('/sms', req.body.Body);
-  oscClient.close();
+  // oscClient.close();
 });
 
 // var oscPort = new osc.WebSocketPort({
