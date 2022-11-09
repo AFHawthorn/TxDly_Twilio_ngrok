@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var Message;
-var osc = require("osc");
+//var osc = require("osc");
+const { Client } = require('node-osc');
+
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
@@ -13,10 +15,14 @@ router.post('/', function(req, res, next) {
   Message = req.body.Body;
   const twiml = new MessagingResponse();
 
-  twiml.message('Your message is now en route to Mars');
+  twiml.message('Your message is now en route to Mars.');
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
+  const client = new Client('localhost', 3333);
+  client.send('/sms', Message, () => {
+  client.close();
+});
 });
 
 // var oscPort = new osc.WebSocketPort({
