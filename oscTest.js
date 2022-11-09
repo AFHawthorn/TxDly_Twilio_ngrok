@@ -17,7 +17,7 @@ var osc = require('node-osc');
 //   client.close();
 // });
 var oscClient = new osc.Client('127.0.0.1', 3333);
-oscClient.send('/sms', 11);
+oscClient.send('/sms', 'test');
 console.log('sent maybe');
 // oscClient.close();
 
