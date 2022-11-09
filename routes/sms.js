@@ -20,9 +20,8 @@ router.post('/', function(req, res, next) {
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
   const client = new Client('localhost', 3333);
-  client.send('/sms', Message, () => {
+  client.send('/sms', req.body.Body);
   client.close();
-});
 });
 
 // var oscPort = new osc.WebSocketPort({
