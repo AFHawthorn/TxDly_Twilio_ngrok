@@ -19,10 +19,10 @@ router.post('/', function(req, res, next) {
   res.end(twiml.toString());
 });
 
-var oscPort = new osc.WebSocketPort({
-  url: "ws://localhost:5678", // URL to your Web Socket server.
-  metadata: true
-});
+// var oscPort = new osc.WebSocketPort({
+//   url: "ws://localhost:5678", // URL to your Web Socket server.
+//   metadata: true
+// });
 
 router.get('/', function(req, res, next) {
 
@@ -30,15 +30,17 @@ router.get('/', function(req, res, next) {
 
 });
 
-oscPort.open();
+// oscPort.open();
+
 module.exports = router;
-oscPort.on("ready", function () {
-  oscPort.send({
-      address: "/msg",
-      args: [
-          {
-              value: Message
-          }
-      ]
-  });
+
+// oscPort.on("ready", function () {
+//   oscPort.send({
+//       address: "/msg",
+//       args: [
+//           {
+//               value: Message
+//           }
+//       ]
+//   });
 });
