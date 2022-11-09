@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var Message;
-//var osc = require("osc");
-const { Client } = require('node-osc');
+var osc = require('node-osc');
 
 
 /* GET users listing. */
@@ -19,7 +18,8 @@ router.post('/', function(req, res, next) {
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
-  const oscClient = new Client('localhost', 3333);
+  
+  var oscClient = new osc.Client('127.0.0.1', 3333);
   oscClient.send('/sms', req.body.Body);
   // oscClient.close();
 });
