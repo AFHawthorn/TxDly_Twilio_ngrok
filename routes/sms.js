@@ -12,11 +12,14 @@ router.post('/', function(req, res, next) {
   console.log(req.header);
   console.log("Request Body: ");
   console.log(req.body);
-  var time = DateTime.now().toLocaleString(DateTime.DATETIME_MED);
+  var time = Datetime.now();
+  var timeString = DateTime.now().toLocaleString(DateTime.DATETIME_MED);
+  const marsDate = new MarsDate(time);
+  const marsTime = marsDate.getMST();
   Message = req.body.Body;
   const twiml = new MessagingResponse();
 
-  twiml.message('Message received at ' + time + '.  Your message is now en route to Mars.');
+  twiml.message('Message received at ' + timeString + '.  Your message is now en route to Mars.  The local time on Mars is currently: ' + marsTime + " MST");
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());

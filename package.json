@@ -15,9 +15,5 @@
     "osc": "2.4.1",
     "pug": "^3.0.2",
     "twilio": "^3.77.3"
-  },
-  {
-    "type": "marstime.js",
-    "type": "marstimeapp.js"
   }
 }
