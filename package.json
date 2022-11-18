@@ -1,7 +1,7 @@
 {
   "name": "ngrok-example-twilio-sms-webhook",
   "version": "0.0.0",
-  "type": "module",
+  // "type": "module",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"

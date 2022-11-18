@@ -4,7 +4,7 @@ var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var Message;
 var osc = require('node-osc');
 const { DateTime } = require("luxon");
-import { MarsDate } from "mars-date-utils";
+const { MarsDate } = require("mars-date-utils");
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
