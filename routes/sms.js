@@ -4,8 +4,8 @@ var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var Message;
 var osc = require('node-osc');
 const { DateTime } = require("luxon");
-//const { MarsDate } = require("mars-date-utils-master");
-import { MarsDate } from "mars-date-utils";
+const { MarsDate } = require("mars-date-utils");
+//import { MarsDate } from "mars-date-utils";
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
@@ -15,12 +15,12 @@ router.post('/', function(req, res, next) {
   console.log(req.body);
   var time = Datetime.now();
   var timeString = DateTime.now().toLocaleString(DateTime.DATETIME_MED);
-  const marsDate = new MarsDate(time);
-  const marsTime = marsDate.getMST();
+  var marsTime = new MarsDate(time);
+  var marsMST = marsTime.getMST();
   Message = req.body.Body;
   const twiml = new MessagingResponse();
 
-  twiml.message('Message received at ' + timeString + '.  Your message is now en route to Mars.  The local time on Mars is currently: ' + marsTime + " MST");
+  twiml.message('Message received at ' + timeString + '.  Your message is now en route to Mars.  The local time on Mars is currently: ' + marsMST + " MST");
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
