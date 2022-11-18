@@ -11,10 +11,10 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "luxon": "^3.1.0",
+    "mars-date-utils": "^1.1.1",
     "morgan": "~1.9.1",
     "osc": "2.4.1",
     "pug": "^3.0.2",
-    "twilio": "^3.77.3",
-    "mars-date-utils": "^1.1.1"
+    "twilio": "^3.77.3"
   }
 }
