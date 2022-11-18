@@ -4,9 +4,7 @@ var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var Message;
 var osc = require('node-osc');
 const { DateTime } = require("luxon");
-import { timeNow } from ./marstimeapp.js
-import { Coordinated_Mars_Time } from ./marstime.js
-
+import { MarsDate } from "mars-date-utils";
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {

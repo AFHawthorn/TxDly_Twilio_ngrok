@@ -17,7 +17,7 @@
     "twilio": "^3.77.3"
   },
   {
-    "type": "marstime",
-    "type": "marstimeapp"
+    "type": "marstime.js",
+    "type": "marstimeapp.js"
   }
 }
