@@ -3,7 +3,7 @@ var router = express.Router();
 var MessagingResponse = require('twilio').twiml.MessagingResponse;
 var Message;
 var osc = require('node-osc');
-const { DateTime } = require("luxon");
+const { DateTime, Duration } = require("luxon");
 const { MarsDate } = require("mars-date-utils");
 //import { MarsDate } from "mars-date-utils";
 
@@ -12,21 +12,28 @@ router.post('/', function(req, res, next) {
   console.log("Request:");
   console.log(req.header);
   console.log("Request Body: ");
-  console.log(req.body);
-  var time = Datetime.now();
-  var timeString = DateTime.now().toLocaleString(DateTime.DATETIME_MED);
-  //var marsTime = new MarsDate(time);
-  //var marsMST = marsTime.getMST();
+  console.log(req.body.Body);
+  var dt = DateTime.now();
+  var timeString = DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS);
+  var dateString = DateTime.now().toLocaleString(DateTime.DATE_MED);
+  const currentTime = new Date(dt.ts);
+  var marsTime = new MarsDate(currentTime);
+  var marsMST = marsTime.getMST();
+  var lightDly = marsTime.getLightDelay();
+  var dlyMins = Math.floor(lightDly / 60);
+  var dlySec = Math.round(lightDly % 60);
   Message = req.body.Body;
   const twiml = new MessagingResponse();
 
-  twiml.message('Message received at ' + timeString + '.  Your message is now en route to Mars.  The local time on Mars is currently: MST');
+  twiml.message('Message received at ' + timeString + ', ' + dateString + '.  Your message is now en route to Mars.  There is a transmission delay of ' + dlyMins + ' minutes and ' + dlySec + ' seconds.  Current Coordinated Mars Time is: ' + marsMST + ' MTC');
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
 
   var oscClient = new osc.Client('127.0.0.1', 3333);
   oscClient.send('/sms', req.body.Body);
+  oscClient.send('/dlyMins', dlyMins);
+  oscClient.send('/dlySec', dlySec);
 });
 
 
