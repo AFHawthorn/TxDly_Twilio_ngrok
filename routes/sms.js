@@ -34,6 +34,7 @@ router.post('/', function(req, res, next) {
   oscClient.send('/sms', req.body.Body);
   oscClient.send('/dlyMins', dlyMins);
   oscClient.send('/dlySec', dlySec);
+  oscClient.send('/delay', lightDly);
 });
 
 
