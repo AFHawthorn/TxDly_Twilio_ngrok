@@ -5,6 +5,7 @@ var Message;
 var osc = require('node-osc');
 const { DateTime, Duration } = require("luxon");
 const { MarsDate } = require("mars-date-utils");
+const { MediaInstance } = require('twilio/lib/rest/api/v2010/account/message/media');
 //import { MarsDate } from "mars-date-utils";
 
 /* GET users listing. */
@@ -26,6 +27,9 @@ router.post('/', function(req, res, next) {
   const twiml = new MessagingResponse();
 
   twiml.message('Message received at ' + timeString + ', ' + dateString + '.  Your message is now en route to Mars.  There is a transmission delay of ' + dlyMins + ' minutes and ' + dlySec + ' seconds.  Current Coordinated Mars Time is: ' + marsMST + ' MTC');
+  var msg1 = ('Message received: ' + timeString + ', ' + dateString);
+  var msg2 = ('Current transmission delay: ' + dlyMins + ' min, ' + dlySec + ' sec');
+  var msg3 = ('Message: ' + req.body.Body);
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
@@ -35,6 +39,9 @@ router.post('/', function(req, res, next) {
   oscClient.send('/dlyMins', dlyMins);
   oscClient.send('/dlySec', dlySec);
   oscClient.send('/delay', lightDly);
+  oscClient.send('/msg1', msg1);
+  oscClient.send('/msg2', msg2);
+  oscClient.send('/msg3', msg3);
 });
 
 
