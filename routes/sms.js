@@ -42,6 +42,7 @@ router.post('/', function(req, res, next) {
   oscClient.send('/msg1', msg1);
   oscClient.send('/msg2', msg2);
   oscClient.send('/msg3', msg3);
+  oscClient.send('/msg', msg1+'\n'+msg2+'\n'+msg3);
 });
 
 
