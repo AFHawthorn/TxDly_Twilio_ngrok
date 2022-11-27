@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
   Message = req.body.Body;
   const twiml = new MessagingResponse();
 
-  twiml.message('Message received at ' + timeString + ', ' + dateString + '.  Your message is now en route to Mars.  There is a transmission delay of ' + dlyMins + ' minutes and ' + dlySec + ' seconds.  Current Coordinated Mars Time is: ' + marsMST + ' MTC');
+  twiml.message('Thank you for using Mars Messaging Service.  Your message was received at ' + timeString + ', ' + dateString + ' and is now en route to Mars.  There is a transmission delay of ' + dlyMins + ' minutes and ' + dlySec + ' seconds.  Current Coordinated Mars Time is: ' + marsMST + ' MTC.');
   var msg1 = ('Message received: ' + timeString + ', ' + dateString);
   var msg2 = ('Current transmission delay: ' + dlyMins + ' min, ' + dlySec + ' sec');
   var msg3 = ('Message: ' + req.body.Body);
