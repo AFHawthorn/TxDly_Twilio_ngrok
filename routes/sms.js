@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
   console.log("Request:");
   console.log(req.header);
   console.log("Request Body: ");
-  console.log(req.body.Body);
+  console.log(req.body);
   var dt = DateTime.now();
   var timeString = DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS);
   var dateString = DateTime.now().toLocaleString(DateTime.DATE_MED);
